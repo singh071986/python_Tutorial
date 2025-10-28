@@ -11,7 +11,7 @@ def rps_game():
     # scissors --paper
     my_choice=ran.randint(1,3)
     if  (user_input not in ['1','2','3']):
-        print("User selection is invalid! Please enter 1, 2, or 3.")
+        print("User selection is invalid! Please enter rock as 1, paper as 2, scissors as 3.")
     elif (int(user_input)==my_choice):
         print("It's a tie! Please try again.")
     elif (int(user_input)==1 and my_choice==3) or (int(user_input)==2 and my_choice==1) or (int(user_input)==3 and my_choice==2):
