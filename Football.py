@@ -37,13 +37,13 @@ class Football:
         print(f"Draws: {draws}")
 
 
-        import numpy as np
-        cond = df['home_score'].to_numpy() > df['away_score'].to_numpy()
-        print(cond)
-        positions = np.flatnonzero(cond)        # integer row positions where home_score > away_score
-        print("positons:::\n",positions)
-        home_wins = df.iloc[positions].shape[0] # count using .iloc
-        print(home_wins)
+        # import numpy as np
+        # cond = df['home_score'].to_numpy() > df['away_score'].to_numpy()
+        # print(cond)
+        # positions = np.flatnonzero(cond)        # integer row positions where home_score > away_score
+        # print("positons:::\n",positions)
+        # home_wins = df.iloc[positions].shape[0] # count using .iloc
+        # print(home_wins)
 
     #step 6
 
