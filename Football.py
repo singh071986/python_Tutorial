@@ -28,8 +28,8 @@ class Football:
         print(f"Number of matches played in 2018 using string ::\n {df[df['date'].str.contains('2018')].shape[0]}")
 
         #step5 Calculate how many times the home team won, lost, or had a draw.
-        #home_wins=df[df['home_score']>df['away_score']].shape[0] # or (id
-        home_wins=(df['home_score'] > df['away_score']).sum()
+        home_wins=df[df['home_score']>df['away_score']].shape[0] # or (id
+        #home_wins=(df['home_score'] > df['away_score']).sum()
         away_wins= df[df['home_score']<df['away_score']].shape[0]
         draws=df[df['home_score']==df['away_score']].shape[0]
         print(f"Home team wins: {home_wins}")
