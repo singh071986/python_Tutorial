@@ -10,13 +10,14 @@ class Football:
         #step2
         df=pd.read_csv('/Users/Yuvaan/Downloads/results.csv')
         print(f"count before  dropping missing value ::\n{df.shape[0]}")
+        print(df.isna().sum().sum())
         if df.isna().sum().sum()>0:
            print(f"Missing value count row wise::\n{df.isna().sum().sum()}")
            print(f"Drop if any missing value::\n{df.dropna()}")
         print(f"count after drop missing value ::\n{df.shape[0]}")
         #step3
         print(f"No of tuples/rows ::{df.shape[0]}")
-        print(f"Number of tournaments in dataset::\n {df['tournament'].nunique()}")
+        print(f"Number of unique tournaments in dataset::\n {df['tournament'].nunique()}")
         #step4
         #convert date column  in to timestamp format
         df['date']=pd.to_datetime(df['date'],errors='coerce')
@@ -37,15 +38,38 @@ class Football:
         print(f"Draws: {draws}")
 
 
-        # import numpy as np
-        # cond = df['home_score'].to_numpy() > df['away_score'].to_numpy()
-        # print(cond)
-        # positions = np.flatnonzero(cond)        # integer row positions where home_score > away_score
-        # print("positons:::\n",positions)
-        # home_wins = df.iloc[positions].shape[0] # count using .iloc
-        # print(home_wins)
+        import matplotlib.pyplot as plt
+        # labels = ['Home Wins', 'Away Wins', 'Draws']
+        # sizes = [home_wins, away_wins, draws]
+        # colors = ['lightblue', 'lightcoral', 'lightgreen']
+        # plt.pie(sizes,  labels=labels, colors=colors, autopct='%1.1f%%')
+        # plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+        # plt.title("Football Match Outcomes")
+        # plt.show()
+        #step 6
+        import pandas as pd
+        matchoutcomes=pd.Series({"Home Winds":home_wins,"Away Wins":away_wins,"Draws":draws})
+        matchoutcomes.plot(kind='pie',autopct='%1.1f%%',title='Football Match Outcomes')
+        plt.show()
 
-    #step 6
+
+        # Debug:
+        print("unique values:", df['neutral'].unique())
+        print(df['neutral'].value_counts(dropna=False))
+        # If you meant to drop rows with missing data, assign the result:
+        df = df.dropna(subset=['neutral'])
+        df['neutral'] = df['neutral'].astype(str).str.upper()
+        neutral_matches=df[df['neutral']=='TRUE'].shape[0]
+        non_neutral_matches=df[df['neutral']=='FALSE'].shape[0]
+        print(f"Neutral matches: {neutral_matches}")
+        print(f"Non-neutral matches: {non_neutral_matches}")
+        # #print(df['neutral'])
+        neautral_data=pd.Series({"Neutral Matches":neutral_matches,"Non-Neutral Matches":non_neutral_matches})
+        neautral_data.plot(kind='pie',color=['orange','purple'],title='Neutral vs Non-Neutral Matches',autopct='%1.1f%%')
+        plt.show()
+
+
+
 
 fb=Football()
 fb.football()
