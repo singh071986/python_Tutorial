@@ -170,6 +170,7 @@ class BrestCancerCampaign:
         cm=confusion_matrix(y_test, y_pred)
         print(f"Random access  data Confusion Matrix score :\n {cm}")
 
+
         #SVC Classifier
         from sklearn.svm import SVC
         model=SVC( kernel="rbf",gamma="auto",C=1.0, random_state=42 )   #c and degree are hyperparameters
