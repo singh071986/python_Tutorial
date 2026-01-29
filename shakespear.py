@@ -60,7 +60,7 @@ class Shakespeare:
 
         history=model.fit(x, y, epochs=500, verbose=1)
         print(history)
-        return history
+        return model
 
            # history = model.fit(x, y, epochs=EPOCHS, batch_size=BATCH_SIZE, validation_data=(X_val, y_val))
 
